@@ -51,8 +51,7 @@ public class LibraryClient {
                     book.setSaveAction(SaveAction.BOOK_ADD);
 
                     // Persist books via asynchronous MDB call
-//                    queueUtil.sendMessage(book);
-                    bean.addBook(book);
+                    queueUtil.sendMessage(book);
                 } else if (choice == 2) {
                     System.out.println("Book(s) entered so far: ");
                     bookList = bean.getBooks();
@@ -68,7 +67,9 @@ public class LibraryClient {
                 printBooks(bookList);
             } catch (IOException e) {
                 e.printStackTrace();
-            }
+            } catch (JMSException e) {
+				e.printStackTrace();
+			}
         }
     }
 
